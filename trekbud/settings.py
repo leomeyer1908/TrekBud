@@ -23,6 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-2cr!)j&7n!2xwe86$sr96#_j_#sfp!o3an7(=ycq*yb1!0yh+9'
 
+OPENAI_API_KEY="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"
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'accounts',
+	'travel',
 ]
 
 MIDDLEWARE = [
