@@ -1,0 +1,16 @@
+<!-- travel/templates/travel/select_region.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Travel Region</title>
+</head>
+<body>
+    <h2>Select Your Desired Travel Region</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
