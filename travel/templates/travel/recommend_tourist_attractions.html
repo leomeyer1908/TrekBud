@@ -1,17 +1,18 @@
 <!--
-Name of File: travel/templates/select_region.html
-Brief description of the file: html template page for the select region page 
+Name of File: travel/templates/recommend_tourist_attractions.html
+Brief description of the file: html template page for recommending tourist attractions page 
 Inputs: None
-Outputs: creates HTML for the select region page
+Outputs: creates HTML for the tourist attractions page
 -->
+
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Select Travel Region</title>
+    <title>Recommend Tourist Attractions</title>
 </head>
 <body>
-    <h2>Select Your Desired Travel Region</h2>
+    <h2>Recommend Tourist Attractions</h2>
     <form method="post">
 				{% csrf_token %}
 				<!--Loops thorugh each form field-->
@@ -35,4 +36,5 @@ Outputs: creates HTML for the select region page
     </form>
 </body>
 </html>
+
 

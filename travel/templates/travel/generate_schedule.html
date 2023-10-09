@@ -1,17 +1,16 @@
 <!--
-Name of File: travel/templates/select_region.html
-Brief description of the file: html template page for the select region page 
+Name of File: travel/templates/generate_schedule.html
+Brief description of the file: html template page for the generate schedule page 
 Inputs: None
-Outputs: creates HTML for the select region page
+Outputs: creates HTML for the generate schedule page
 -->
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Select Travel Region</title>
+    <title>Generate Schedule</title>
 </head>
 <body>
-    <h2>Select Your Desired Travel Region</h2>
+    <h2>Generate Schedule</h2>
     <form method="post">
 				{% csrf_token %}
 				<!--Loops thorugh each form field-->
@@ -35,4 +34,6 @@ Outputs: creates HTML for the select region page
     </form>
 </body>
 </html>
+
+
 

@@ -1,4 +1,12 @@
-<!-- templates/registration/registration.html -->
+<!--
+Name of File: accounts/templates/registration.html
+Brief description of the file: creates confirmation email to be sent to the user 
+Inputs: None
+Outputs: sends confirmation email to the user
+-->
+
+
+<!--css-->
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -16,7 +24,7 @@
                 <h2 class="mb-4">Register</h2>
                 <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                     {% csrf_token %}
-                    <!-- Loop through form fields and apply Bootstrap styles -->
+                    <!-- Loop through form fields and display each of them -->
                     {% for field in form %}
                         <div class="form-group">
                             {{ field.label_tag }}
