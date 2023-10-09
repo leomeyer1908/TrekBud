@@ -1,0 +1,26 @@
+<!--
+Name of File: travel/templates/result.html
+Brief description of the file: display results for a form submission from a travel recommendation 
+Inputs: None
+Outputs: creates HTML for the result page
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Submission Result</title>
+</head>
+<body>
+    <h2>Form Submission Result</h2>
+	<!--Display results-->
+    <p>{{ result }}</p>
+	<!-- Feedback form -->
+    <form method="post" action="{% url 'feedback' %}">
+        {% csrf_token %}
+        <label for="feedback">Provide Feedback:</label>
+        <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea><br>
+        <button type="submit">Submit Feedback</button>
+    </form>
+</body>
+</html>
+
