@@ -1,0 +1,42 @@
+<!--
+Name of File: accounts/templates/registration.html
+Brief description of the file: creates confirmation email to be sent to the user 
+Inputs: None
+Outputs: sends confirmation email to the user
+-->
+
+
+<!--css-->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include your custom CSS styles (if any) -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="mb-4">Login</h2>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <label>Username:</label>
+                    <input type="text" name="username" placeholder="Enter username"/>
+                    <label>Password:</label>
+                    <input type="password" name="password" placeholder="Enter password"/>
+                    <input type="submit" value="Login"/>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Include Bootstrap JS (optional, for certain features) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -15,12 +15,6 @@ Outputs: creates HTML for the result page
 	<!--Display results-->
     <p>{{ result }}</p>
 	<!-- Feedback form -->
-    <form method="post" action="{% url 'feedback' %}">
-        {% csrf_token %}
-        <label for="feedback">Provide Feedback:</label>
-        <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea><br>
-        <button type="submit">Submit Feedback</button>
-    </form>
 </body>
 </html>
 
