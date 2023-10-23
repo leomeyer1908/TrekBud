@@ -55,6 +55,7 @@ TEMPLATES = [
         'DIRS': [
 			BASE_DIR / 'accounts/templates',
 			BASE_DIR / 'travel/templates',
+            BASE_DIR / 'home/templates',
 		],
         'APP_DIRS': True,
         'OPTIONS': {
