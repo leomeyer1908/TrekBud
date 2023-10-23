@@ -1,6 +1,12 @@
+<!--
+Name of File: home/templates/home.html
+Brief description of the file: creates a home page, that links to all other pages
+Inputs: None
+Outputs: display all other pages in the website
+-->
 {% if request.user.is_authenticated%} <!--If the user is logged in-->
 <a href="{%url 'logout'%}">Logout</a> <!--Show logout button, which leads to logout url-->
-<a href="{url 'update-user'}">Update User Information</a> <!--show generate schedule button-->
+<a href="/accounts/user-profile">View User Profile</a> <!--show generate schedule button-->
 {%else%} <!--if use is not logged in-->
 <a href="/accounts/register">Register</a> <!--show register button-->
 <a href="/accounts/login">Login</a> <!--show login button-->
