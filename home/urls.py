@@ -1,8 +1,8 @@
 """
-Name of File: accounts/urls.py
-Brief description of the file: url for the accounts apps 
+Name of File: home/urls.py
+Brief description of the file: url for the home app 
 Inputs: None
-Outputs: set url for the accounts apps
+Outputs: set url for the home app
 """
 
 

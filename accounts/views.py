@@ -16,8 +16,12 @@ from django.contrib.auth.tokens import default_token_generator
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
+from .models import UserProfile
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
+from django.db.utils import IntegrityError
+
 
 
 #function that sends a confirmation email when user signs up
@@ -78,20 +82,49 @@ def registration(request):
 		form = RegistrationForm(request.POST)
 		#if the form has no error
 		if form.is_valid():
-			#set the user to have the information from the form without saving to the database to clean up input first
-			user = form.save(commit=False)
-			#get cleaned username
-			username = form.cleaned_data.get('username')
-			#get cleaned password
-			password = form.cleaned_data.get('password1')
-			#actually save user to database
-			user = form.save()
-			#authenticate the user based on their new username and password, so user is automatically logged in
-			user = authenticate(username=username, password=password)
-			#login with the proper user authentication
-			login(request, user)
-			#send the user to be on the home page
-			return redirect('home')  # Replace 'home' with the URL name for your home page
+			try:
+				with transaction.atomic():
+					# Create a User instance for authentication
+					user = User.objects.create_user(
+						username=form.cleaned_data.get('username'),
+						password=form.cleaned_data.get('password1'),
+						email=form.cleaned_data.get('email')
+					)
+
+					# Create a UserProfile instance and populate it with form data
+					user_profile = UserProfile.objects.create(
+						user=user,
+						name=form.cleaned_data.get('name'),
+						email=form.cleaned_data.get('email'),
+						phone_number=form.cleaned_data.get('phone_number'),
+						address=form.cleaned_data.get('address'),
+						dietary_restrictions=form.cleaned_data.get('dietary_restrictions'),
+						emergency_contact=form.cleaned_data.get('emergency_contact'),
+						travel_style_preferences=form.cleaned_data.get('travel_style_preferences'),
+						preferred_airlines=form.cleaned_data.get('preferred_airlines'),
+						budget_constraints=form.cleaned_data.get('budget_constraints'),
+						preferred_travel_dates=form.cleaned_data.get('preferred_travel_dates'),
+						trip_duration=form.cleaned_data.get('trip_duration'),
+						notification_preferences=', '.join(form.cleaned_data.get('notification_preferences')),
+						profile_picture=form.cleaned_data.get('profile_picture'),
+						profile_privacy=form.cleaned_data.get('profile_privacy'),
+					)
+
+					#save the user profile information to the database
+					user_profile.save()
+
+					#get cleaned username
+					username = form.cleaned_data.get('username')
+					#get cleaned password
+					password = form.cleaned_data.get('password1')
+					#authenticate the user based on their new username and password, so user is automatically logged in
+					user = authenticate(username=username, password=password)
+					#login with the proper user authentication
+					login(request, user)
+					#send the user to be on the home page
+					return redirect('home')  # Replace 'home' with the URL name for your home page
+			except IntegrityError as e:
+				form.add_error(None, "Username or email is already taken.")
 	#if the user has not submit the form yet
 	else:
 		#load the registration page 
@@ -137,3 +170,19 @@ def logoutUser(request):
 def updateUser(request):
 	#send the template of the update_user.html page when the user wants to update their information
 	return render(request, "update_user/update_user.html")
+
+#This function gets called to create the user profile account page
+def userProfileAccount(request):
+	# Check if the user is authenticated
+    if request.user.is_authenticated:
+		#print which user is authenticated on terminal for debugging
+        print(f"User {request.user.username} is authenticated.")
+        # Get the user's profile based on the currently logged-in user
+        user_profile = UserProfile.objects.get(user=request.user)
+		#update context with the new user profile, so that it gets sent to the browser
+        context = {'userProfile': user_profile}
+		#load the user profile page, with the context of the current user profile
+        return render(request, 'profile/user_profile.html', context)
+    else:
+        # Handle the case where the user is not authenticated by sending them to login
+        return redirect('login')

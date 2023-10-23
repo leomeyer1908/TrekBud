@@ -1,0 +1,30 @@
+<!--
+Name of File: templates/profile/user_profile.html
+Brief description of the file: creates page to display all the user's information
+Inputs: None
+Outputs: display user information
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- title of page -->
+    <title>User Profile Account</title>
+</head>
+<body>
+    <!-- Page and all the profile information for the current user profile -->
+    <h1>User Profile Account</h1>
+        Name: {{ userProfile.name }}<br>
+        Email: {{ userProfile.email }}<br>
+        Phone Number: {{ userProfile.phone_number }}<br>
+        Address: {{ userProfile.address }}<br>
+        Dietary Restrictions: {{ userProfile.dietary_restrictions }}<br>
+        Emergency Contact: {{ userProfile.emergency_contact }}<br>
+        Travel Style Preferences: {{ userProfile.travel_style_preferences }}<br>
+        Preferred Airlines: {{ userProfile.preferred_airlines }}<br>
+        Budget Constraints: {{ userProfile.budget_constraints }}<br>
+        Preferred Travel Dates: {{ userProfile.preferred_travel_dates }}<br>
+        Trip Duration: {{ userProfile.trip_duration }}<br>
+        Notification Preferences: {{ userProfile.notification_preferences }}<br>
+    </ul>
+</body>
+</html>
