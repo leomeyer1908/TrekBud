@@ -8,13 +8,21 @@ Outputs: creates HTML for the result page
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Form Submission Result</title>
 </head>
 <body>
-    <h2>Form Submission Result</h2>
-	<!--Display results-->
-    <p>{{ result }}</p>
-	<!-- Feedback form -->
+    <!-- Adds a margin -->
+    <div style="margin:10px">
+        <h2>Form Submission Result</h2>
+        <!-- loop through each result -->
+        {% for result in results %}
+            <!--Display results-->
+            <p>{{ result }}</p><br>
+            <!-- Feedback form -->
+        {% endfor %}
+    </div>
 </body>
 </html>
 
