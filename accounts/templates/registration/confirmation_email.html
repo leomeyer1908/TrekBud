@@ -4,7 +4,13 @@ Brief description of the file: creates confirmation email to be sent to the user
 Inputs: None
 Outputs: sends confirmation email to the user
 -->
+{%load static%}
+<html>
+<title>
+  <link rel="stylesheet" href="{% static 'confirm.css'%} "> 
+</title>
 <p>Thank you for registering with us!</p>
 <p>To confirm your email address, please click the link below:</p>
 <p><a href="{{ confirmation_url }}">Confirm Email</a></p>
 <p>If you didn't register on our website, please ignore this message.</p>
+</html>

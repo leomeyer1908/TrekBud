@@ -15,7 +15,7 @@ Outputs: sends confirmation email to the user
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Include your custom CSS styles (if any) -->
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
 </head>
 <body>
     <div class="container mt-5">
@@ -24,9 +24,9 @@ Outputs: sends confirmation email to the user
                 <h2 class="mb-4">Login</h2>
                 <form method="POST" action="">
                     {% csrf_token %}
-                    <label>Username:</label>
+                    <i class="glyphicon glyphicon-home"></i>
                     <input type="text" name="username" placeholder="Enter username"/>
-                    <label>Password:</label>
+                    <i class="glyphicon glyphicon-lock"></i>
                     <input type="password" name="password" placeholder="Enter password"/>
                     <input type="submit" value="Login"/>
 
