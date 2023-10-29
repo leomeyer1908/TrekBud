@@ -125,7 +125,7 @@ def generate_schedule(region, attractions, user_options):
 #generate text from a prompt using GPT
 def generate_text_with_gpt(input_text):
 	#openai api key
-	openai.api_key = "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" 
+	openai.api_key = "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" 
 	#create a reponse from GPT
 	response = openai.ChatCompletion.create(
 		model="gpt-3.5-turbo", #use GPT 3.5

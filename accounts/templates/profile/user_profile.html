@@ -7,24 +7,27 @@ Outputs: display user information
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- title of page -->
     <title>User Profile Account</title>
 </head>
 <body>
-    <!-- Page and all the profile information for the current user profile -->
-    <h1>User Profile Account</h1>
-        Name: {{ userProfile.name }}<br>
-        Email: {{ userProfile.email }}<br>
-        Phone Number: {{ userProfile.phone_number }}<br>
-        Address: {{ userProfile.address }}<br>
-        Dietary Restrictions: {{ userProfile.dietary_restrictions }}<br>
-        Emergency Contact: {{ userProfile.emergency_contact }}<br>
-        Travel Style Preferences: {{ userProfile.travel_style_preferences }}<br>
-        Preferred Airlines: {{ userProfile.preferred_airlines }}<br>
-        Budget Constraints: {{ userProfile.budget_constraints }}<br>
-        Preferred Travel Dates: {{ userProfile.preferred_travel_dates }}<br>
-        Trip Duration: {{ userProfile.trip_duration }}<br>
-        Notification Preferences: {{ userProfile.notification_preferences }}<br>
-    </ul>
+    <div style="margin:10px">
+        <!-- Page and all the profile information for the current user profile -->
+        <h1>User Profile Account</h1>
+        <b>Name: </b>{{ userProfile.name }}<br>
+        <b>Email: </b>{{ userProfile.email }}<br>
+        <b>Phone Number: </b>{{ userProfile.phone_number }}<br>
+        <b>Address: </b>{{ userProfile.address }}<br>
+        <b>Dietary Restrictions: </b>{{ userProfile.dietary_restrictions }}<br>
+        <b>Emergency Contact: </b>{{ userProfile.emergency_contact }}<br>
+        <b>Travel Style Preferences: </b>{{ userProfile.travel_style_preferences }}<br>
+        <b>Preferred Airlines: </b>{{ userProfile.preferred_airlines }}<br>
+        <b>Budget Constraints: </b>{{ userProfile.budget_constraints }}<br>
+        <b>Preferred Travel Dates: </b>{{ userProfile.preferred_travel_dates }}<br>
+        <b>Trip Duration: </b>{{ userProfile.trip_duration }}<br>
+        <b>Notification Preferences: </b>{{ userProfile.notification_preferences }}<br>
+    </div>
 </body>
 </html>
