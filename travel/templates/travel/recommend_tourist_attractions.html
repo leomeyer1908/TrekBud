@@ -5,11 +5,12 @@ Inputs: None
 Outputs: creates HTML for the tourist attractions page
 -->
 
-
+{%load static%}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Recommend Tourist Attractions</title>
+	<link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <h2>Recommend Tourist Attractions</h2>
