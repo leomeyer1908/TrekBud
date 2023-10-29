@@ -6,10 +6,12 @@ Outputs: Displays the account registration form
 """
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from .models import UserProfile
 
 #create the registration form class that is used to get the form information of the users and inherits from Django's user creation form template
 class RegistrationForm(UserCreationForm):
+	#create username field
+	username = forms.CharField(max_length=150, required=True, help_text="Required. 150 characters or fewer")
 	#create a form for name
 	name = forms.CharField(max_length=100, required=True, help_text="Required. 100 characters or fewer.")
 	#create a form for email
@@ -34,8 +36,8 @@ class RegistrationForm(UserCreationForm):
 	preferred_travel_dates = forms.DateField(required=False, help_text="Select preferred travel dates.")
 	#create a form for trip duration
 	trip_duration = forms.IntegerField(required=False, help_text="Specify trip duration in days.")
-	
-	#notification choices that are given
+
+		#notification choices that are given
 	NOTIFICATION_CHOICES = (
 		('email', 'Email'),
 		('sms', 'SMS'),
@@ -60,13 +62,6 @@ class RegistrationForm(UserCreationForm):
         help_text="Choose to keep the profile picture private or public."
     )
 
-	#email confirmation form
-	email2 = forms.EmailField(
-		label="Confirm Email",
-		required=True,
-		help_text="Enter the same email address as above, for verification."
-	)
-
 	#create a function to clean the data
 	def clean(self):
 		#get the cleaned data function from the inherited clean function
@@ -83,10 +78,9 @@ class RegistrationForm(UserCreationForm):
 
 	#create the meta class to display the forms
 	class Meta:
-		#get the model from the User
-		model = User
-		#list the fields in the order that will be displayed
-		fields = ['username', 'name', 'email', 'email2', 'phone_number', 'address', 'password1', 'password2',
+		model = UserProfile
+		#list the fields that will be displayed and the order in which they will appear
+		fields = ['username', 'name', 'email', 'phone_number', 'address', 'password1', 'password2',
 				  'dietary_restrictions', 'emergency_contact', 'travel_style_preferences',
 				  'preferred_airlines', 'budget_constraints', 'preferred_travel_dates', 'trip_duration',
 				  'notification_preferences', 'profile_picture', 'profile_privacy']

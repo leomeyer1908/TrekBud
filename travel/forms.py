@@ -39,30 +39,22 @@ RegionSelectionForm.Meta = RegionSelectionFormMeta
 
 #create the forms for the tourist attractions page
 class TouristAttractionForm(forms.Form):
-	#list of all the options
-	option_list = ["interests", "activity_types", "do_you_want_to_visit_museums?", "do_you_want_to_visit_parks?", "do_you_want to_visit_landmarks?", "how_popular_should_the_places_be?", "what_should_the_ratings_be?", "what_proximity_should_they_be_from each_other?"]
+    # Create a form field for each of the personalized user settings
+    region = forms.CharField(max_length=100, required=True, help_text="100 characters or fewer", label="Enter region you would like to travel to")
+    interests = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="Do you have any specific interests?")
+    activity_types = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="What types of activities do you enjoy?")
+    museums = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="Do you want to visit museums?")
+    parks = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="Do you want to visit parks?")
+    landmarks = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="Do you want to visit landmarks?")
+    popular = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="How popular should the places be?")
+    ratings = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="What should the ratings be?")
+    proximity = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="What proximity should they be from each other?")
 
-	# Create a form field for each of the personalized user settings
-	interests = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
-	activity_types = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
-	museums = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
-	parks = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
-	landmarks = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
-	popular = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
-	ratings = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
-	proximity = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
-
-
-#create the Meta for the tourist attractions to be able to display the forms
-class TouristAttractionFormMeta:
 	#create Meta class
     class Meta:
-		#get the fields to be displayed from the tourist attractions form
-        fields = TouristAttractionForm.option_list
-
-#set the region selection meta to be the tourist attractions meta class
-TouristAttractionForm.Meta = TouristAttractionFormMeta
-
+        #get the fields to be displayed from the tourist attractions form
+        fields = ['region', 'interests', 'activity_types', 'museums', 'parks', 'landmarks', 'popular', 'ratings', 'proximity']
+        
 
 
 #create the forms for the generate schedule page page
@@ -71,6 +63,8 @@ class GenerateScheduleForm(forms.Form):
 	option_list = ["date", "time", "duration"]
 
 	# Create a form field for each of the personalized user settings
+	region = forms.CharField(max_length=100, required=True, help_text="100 characters or fewer", label="Enter region you would like to travel to")
+	attractions = forms.CharField(max_length=100, required=True, help_text="100 characters or fewer", label="Enter at least one attraction you would like to visit")
 	date = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
 	time = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
 	duration = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer.")
