@@ -79,3 +79,18 @@ class GenerateScheduleFormMeta:
 
 #set the generate schedule meta to be the tourist attractions meta class
 GenerateScheduleForm.Meta = GenerateScheduleFormMeta
+
+#create the forms for the tourist attractions page
+class RecommendRestaurantsForm(forms.Form):
+    # Create a form field for each of the personalized user settings
+    region = forms.CharField(max_length=100, required=True, help_text="100 characters or fewer", label="Enter region you would like to travel to")
+    cuisine_preferences = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="Enter your cuisine preferences")
+    dietary_restrictions = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="Enter your dietary restrictions")
+    price_range = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="What is your desired price range?")
+    min_rating = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="Enter the minimum rating for the restaurant")
+    max_distance = forms.CharField(max_length=100, required=False, help_text="100 characters or fewer", label="Enter the maximum distance you and the restaurants")
+
+	#create Meta class
+    class Meta:
+        #get the fields to be displayed from the tourist attractions form
+        fields = ['region', 'cuisine_preferences', 'dietary_restrictions', 'price_range', 'min_rating', 'max_distance']

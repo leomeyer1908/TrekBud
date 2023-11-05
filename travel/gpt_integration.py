@@ -46,10 +46,15 @@ Criteria:
 ###"""
 	#for each user preference
 	for option in user_options:
-		#if the user typed in the preference
-		if user_options[option].strip() != "":
-			#add it to the prompt
-			prompt += f"{option}: {user_options[option]}\n"
+		#do a try block in case field is not a string, thus strip would not work
+		try:
+			#if the user typed in the preference
+			if user_options[option].strip() != "":
+				#add it to the prompt
+				prompt += f"{option}: {user_options[option]}\n"
+		#ignore if attribute error caused by strip
+		except AttributeError:
+			pass
 	prompt += "###\n"
 
 	#add the desired format GPT should use
@@ -70,10 +75,15 @@ def recommend_tourist_attraction(region, user_options):
 ###"""
 	#for each user preference
 	for option in user_options:
-		#if the user typed in the preference
-		if user_options[option].strip() != "":
-			#add it to the prompt
-			prompt += f"{option}: {user_options[option]}\n"
+		#do a try block in case field is not a string, thus strip would not work
+		try:
+			#if the user typed in the preference
+			if user_options[option].strip() != "":
+				#add it to the prompt
+				prompt += f"{option}: {user_options[option]}\n"
+		#ignore if attribute error caused by strip
+		except AttributeError:
+			pass
 	prompt += "###\n"
 
 	#add the desired format GPT should use
@@ -89,32 +99,33 @@ def recommend_tourist_attraction(region, user_options):
 #creates the prompt for recommending tourist attractions based on the user preferences, the region, and attractions list
 def generate_schedule(region, attractions, user_options):
 	#start prompt by telling GPT to list 3 schedules in a region with the attractions with a criteria in a certain format
-	prompt = f"Based on the following attractions: {', '.join(attractions)} for {region}, create 3 trip schedules that match with the following criteria:"
+	prompt = f"Based on the following attractions: {', '.join(attractions)} for {region}, create a trip schedule that match with the following criteria:"
 	prompt += """Criteria:
 	###"""
 	#for each user preference
 	for option in user_options:
-		#if the user typed in the preference
-		if user_options[option].strip() != "":
-			#add it to the prompt
-			prompt += f"{option}: {user_options[option]}\n"
+		#do a try block in case field is not a string, thus strip would not work
+		try:
+			#if the user typed in the preference
+			if user_options[option].strip() != "":
+				#add it to the prompt
+				prompt += f"{option}: {user_options[option]}\n"
+		#ignore if attribute error caused by strip
+		except AttributeError:
+			pass
 	prompt += "###\n"
 
 	#add the desired format GPT should use
 	prompt += """Desired Format:
-	Trip Schedule 1:
+	Trip Schedule 1: <Attraction Name> - <Explanation/Copywriting>
+		Day 1: 
 		- 6AM-7AM: <what will be done during this time> 
 		- 8AM-10AM: <what will be done during this time> 
-		...
+		... <Include a detailed schedule like the one for Day 1 for all the days of the trip>
+		Day <Day Num>:
 		- <time>: <what will be done during this time> 
-	Trip Schedule 2: <Attraction Name> - <Explanation/Copywriting>
-		- 8AM-9AM: <what will be done during this time> 
-		...
-		- <time>: <what will be done during this time> 
-	Trip Schedule 3: 
-		- <time>: <what will be done during this time> 
-		...
-		- <time>: <what will be done during this time> 
+	
+	Make sure to put all the days in between the first day and the last where it says "..." in the desired format, and do not skip any days.
 	"""
 
 	#return the prompt
@@ -125,7 +136,9 @@ def generate_schedule(region, attractions, user_options):
 #generate text from a prompt using GPT
 def generate_text_with_gpt(input_text):
 	#openai api key
-	openai.api_key = "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" 
+	openai.api_key = "" 
+	#Print that response is being generated to help debugging
+	print("Generating GPT response...")
 	#create a reponse from GPT
 	response = openai.ChatCompletion.create(
 		model="gpt-3.5-turbo", #use GPT 3.5
