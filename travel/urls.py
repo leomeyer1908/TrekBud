@@ -13,5 +13,6 @@ urlpatterns = [
     path('recommend-attractions/', views.recommend_attractions, name='recommend_tourist_attractions'), #link recommend_attraction url with its function
     path('generate-schedule/', views.make_schedule, name='generate_schedule'), #link generate schedule url with its function
     path('recommend-restaurants/', views.recommend_restaurants, name='recommend_restaurants'), #link recommend restaurants url with its function
+    path('weather-forecast/', views.weather_forecast, name='weather-forecast'), #link link to the weather forecast
 ]
 

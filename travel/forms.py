@@ -94,3 +94,9 @@ class RecommendRestaurantsForm(forms.Form):
     class Meta:
         #get the fields to be displayed from the tourist attractions form
         fields = ['region', 'cuisine_preferences', 'dietary_restrictions', 'price_range', 'min_rating', 'max_distance']
+        
+
+#this is the formes for the weather selection
+class WeatherForm(forms.Form):
+    region = forms.CharField(label='Region (City)', max_length=100)
+    travel_duration = forms.IntegerField(label='Travel Duration (hours)')
