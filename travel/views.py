@@ -9,6 +9,8 @@ from .forms import RegionSelectionForm, TouristAttractionForm, GenerateScheduleF
 from .gpt_integration import display_regions, generate_text_with_gpt, recommend_tourist_attraction, generate_schedule
 from accounts.models import UserProfile 
 from django.contrib.auth.decorators import login_required
+from .weather import get_weather
+from .forms import WeatherForm
 
 #make login required to update the user
 @login_required(login_url='login')
@@ -238,3 +240,24 @@ def feedback_view(request):
 		
 		#this keeps them in the result page so they do not get redirected to another page
         return redirect('result')
+	
+
+# weatherapp/views.py
+
+def weather_forecast(request):
+    weather_data = None
+
+    if request.method == 'POST':
+        form = WeatherForm(request.POST)
+
+        if form.is_valid():
+            region = form.cleaned_data['region']
+            travel_duration = form.cleaned_data['travel_duration']
+            weather_data = get_weather(region, travel_duration)
+
+    else:
+        form = WeatherForm()
+
+    return render(request, 'travel/weather_forecast.html', {'form': form, 'weather_data': weather_data})
+
+

@@ -1,0 +1,26 @@
+User
+<!-- weather_forecast.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Forecast</title>
+</head>
+<body>
+    <h1>Weather Forecast</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Get Weather Forecast">
+    </form>
+
+    {% if weather_data %}
+        <h2>Weather Forecast for {{ weather_data.city.name }}, {{ weather_data.city.country }}</h2>
+        <ul>
+            {% for forecast in weather_data.list %}
+                <li>{{ forecast.dt_txt }}: {{ forecast.weather.0.description }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {# Added the missing {% endif %} here #}
+</body>
+</html>
