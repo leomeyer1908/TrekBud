@@ -193,19 +193,19 @@ def edit_profile(request):
 			#save the form so that it saves the changes to the database
             form.save()
 			#send them back to the user-profile page
-            return redirect('user-profile')
+            return redirect('user_profile')
 	#if they have not submitted the form yet (they load up the page for the first time)
     else:
 		#set the form variable to be the user profile edit form
         form = UserProfileEditForm(instance=request.user.user_profile)
 	#load the page for the edit_profile.html, with the context of the user profile edit form
-    return render(request, 'templates/profile/edit_profile.html', {'form': form})
+    return render(request, 'profile/edit_profile.html', {'form': form})
 
 #function that deletes the user account for the delete account page
 def delete_account(request):
-	#if the user clicks the dlete account button
+	#if the user clicks the delete account button
     if request.method == 'POST':
         request.user.delete()  # Delete the user and related UserProfile.
         return redirect('home')  # Redirect to a suitable page after deletion.
 	#render the delete account page
-    return render(request, 'delete_account.html')
+    return render(request, 'profile/delete_account.html')
