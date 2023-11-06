@@ -1,0 +1,24 @@
+<!--
+Name of File: templates/profile/delete_account.html
+Brief description of the file: page that allows user to delete their account
+Inputs: Button to confirm account deleteion
+Outputs: Deletes user account
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- title of page -->
+    <title>User Profile Account</title>
+</head>
+<body>
+    <h2>Delete Your Account</h2>
+    <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit">Delete Account</button>
+    </form>
+    <a href="{% url 'profile' %}">Cancel</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!--
+Name of File: templates/profile/edit_profile.html
+Brief description of the file: creates page to edit all the user's information
+Inputs: User information that they want to edit
+Outputs: Edit user information
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- title of page -->
+    <title>User Profile Account</title>
+</head>
+<body>
+    <h2>Edit Your Profile</h2>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Put the form for the user to able to edit their account -->
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+    <!-- Create a button for the user to be able to delte their account by going to the delete account page-->
+    <a href="{% url 'delete_account' %}">Delete Account</a>
+</form>
+</body>
+</html>

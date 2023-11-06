@@ -29,5 +29,7 @@ Outputs: display user information
         <b>Trip Duration: </b>{{ userProfile.trip_duration }}<br>
         <b>Notification Preferences: </b>{{ userProfile.notification_preferences }}<br>
     </div>
+    <!-- Add a button to edit the profile -->
+    <a href="{% url 'edit_profile' %}">Edit Profile</a> 
 </body>
 </html>

@@ -1,3 +1,9 @@
+"""
+Name of File: travel/weather.py
+Brief description of the file: gets information about the weather for a specified region 
+Inputs: region the user wants to see weather for
+Outputs: weather information for a region
+"""
 # Import the 'requests' library to make HTTP requests
 import requests
 
@@ -6,7 +12,7 @@ from datetime import datetime, timedelta
 
 # Define a function 'get_weather' that retrieves weather data for a specific region and date range
 def get_weather(region, start_date, end_date, unit):
-    # Replace this with your own OpenWeatherMap API key
+    # OpenWeatherMap API key
     api_key = '21cd681675a5b34b9a8b33e7b847f14b'
     
     # Define the base URL for the OpenWeatherMap API
