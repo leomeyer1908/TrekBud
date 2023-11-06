@@ -213,7 +213,7 @@ def recommend_restaurants(request):
 						#add that to the current form
 						user_input[key] = personalized_user_info[key]
 
-			#separate the region and attractions input from the other options to be given separetly when making a prompt
+			#separate the region input from the other options to be given separetly when making a prompt
 			options = {key: values for key, values in user_input.items() if key != "region"}
 
 			#get a prompt based on the user input, and use that prompt to give it to the GPT model to get a result
