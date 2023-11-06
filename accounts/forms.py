@@ -84,3 +84,15 @@ class RegistrationForm(UserCreationForm):
 				  'dietary_restrictions', 'emergency_contact', 'travel_style_preferences',
 				  'preferred_airlines', 'budget_constraints', 'preferred_travel_dates', 'trip_duration',
 				  'notification_preferences', 'profile_picture', 'profile_privacy']
+
+#create the forms for the user to be able to edit their profile, which just contains the same fields as registration
+class UserProfileEditForm(forms.ModelForm):
+	#create the meta class to display the forms
+    class Meta:
+		#user model that is used is the custom user model we created with the custom fields
+        model = UserProfile
+		#list the fields that will be displayed and the order in which they will appear
+        fields = ['username', 'name', 'email', 'phone_number', 'address', 'password1', 'password2',
+				  'dietary_restrictions', 'emergency_contact', 'travel_style_preferences',
+				  'preferred_airlines', 'budget_constraints', 'preferred_travel_dates', 'trip_duration',
+				  'notification_preferences', 'profile_picture', 'profile_privacy']

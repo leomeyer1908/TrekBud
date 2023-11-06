@@ -8,7 +8,7 @@ Outputs: display the proper html templates on the user's browsers
 
 from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UserProfileEditForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from django.core.mail import send_mail
@@ -164,13 +164,6 @@ def logoutUser(request):
 	#sends user back to the home page
 	return redirect('home')
 
-#make login required to update the user
-@login_required(login_url='login')
-#add the update user function
-def updateUser(request):
-	#send the template of the update_user.html page when the user wants to update their information
-	return render(request, "update_user/update_user.html")
-
 #This function gets called to create the user profile account page
 def userProfileAccount(request):
 	# Check if the user is authenticated
@@ -186,3 +179,33 @@ def userProfileAccount(request):
     else:
         # Handle the case where the user is not authenticated by sending them to login
         return redirect('login')
+	
+#make login required to update the user
+@login_required(login_url='login')
+#create a function to allow for the user to edit their profile information
+def edit_profile(request):
+	#if the user submits the form
+    if request.method == 'POST':
+		#get the information from the form and attack it to their user profile
+        form = UserProfileEditForm(request.POST, request.FILES, instance=request.user.user_profile)
+		#if the form is valid
+        if form.is_valid():
+			#save the form so that it saves the changes to the database
+            form.save()
+			#send them back to the user-profile page
+            return redirect('user-profile')
+	#if they have not submitted the form yet (they load up the page for the first time)
+    else:
+		#set the form variable to be the user profile edit form
+        form = UserProfileEditForm(instance=request.user.user_profile)
+	#load the page for the edit_profile.html, with the context of the user profile edit form
+    return render(request, 'templates/profile/edit_profile.html', {'form': form})
+
+#function that deletes the user account for the delete account page
+def delete_account(request):
+	#if the user clicks the dlete account button
+    if request.method == 'POST':
+        request.user.delete()  # Delete the user and related UserProfile.
+        return redirect('home')  # Redirect to a suitable page after deletion.
+	#render the delete account page
+    return render(request, 'delete_account.html')

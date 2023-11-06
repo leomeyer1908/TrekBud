@@ -16,5 +16,7 @@ urlpatterns = [
     path('login/', views.loginUser, name="login"), #set login page to lead to loginUser function
 	path('logout/', views.logoutUser, name="logout"), #set logout page to lead to logoutUser function
     path('update-user/', views.updateUser, name="updateUser"), #set logout page to lead to logoutUser function
-    path('user-profile', views.userProfileAccount, name="userProfileAccount") #set user-profile page to point to userProfileAccount function 
+    path('user-profile', views.userProfileAccount, name="userProfileAccount"), #set user-profile page to point to userProfileAccount function 
+    path('edit-profile/', views.edit_profile, name='edit_profile'), #link the edit-profile url witht he edit_profile function in views
+    path('delete-account/', views.delete_account, name='delete_account'),  #link the delete-account url with the delete-_account views function
 ]

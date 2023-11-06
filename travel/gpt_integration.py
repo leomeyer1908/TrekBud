@@ -131,6 +131,35 @@ def generate_schedule(region, attractions, user_options):
 	#return the prompt
 	return prompt
 
+
+#creates the prompt for recommending restaurants based on the user preferences, the region, and attractions list
+def recommend_restaurant(region, user_options):
+	#start prompt by telling GPT to list 3 restaurants in a region with a criteria in a certain format
+	prompt = f"Suggest a list of 3 famous/popular restaurants in {region} that match with the following criteria:"
+	prompt += """Criteria:###"""
+	#for each user preference
+	for option in user_options:
+		#do a try block in case field is not a string, thus strip would not work
+		try:
+			#if the user typed in the preference
+			if user_options[option].strip() != "":
+				#add it to the prompt
+				prompt += f"{option}: {user_options[option]}\n"
+		#ignore if attribute error caused by strip
+		except AttributeError:
+			pass
+	prompt += "###\n"
+
+	#add the desired format GPT should use
+	prompt += """Desired Format: 
+	Restaurant 1: <Restaurant Name> - <Explanation/Copywriting>
+	Restaurant 2: <Restaurant Name> - <Explanation/Copywriting>
+	Restaurant 3: <Restaurant Name> - <Explanation/Copywriting>"""
+
+
+	#return the prompt
+	return prompt
+
 	
 	
 #generate text from a prompt using GPT
