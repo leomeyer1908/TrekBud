@@ -1,26 +1,61 @@
-User
 <!-- weather_forecast.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Weather Forecast</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     <h1>Weather Forecast</h1>
 
+    <!-- Form for submitting weather data (Django form) -->
     <form method="post">
+        <!-- Add CSRF token for security -->
         {% csrf_token %}
+        <!-- Render the form fields -->
         {{ form.as_p }}
+        <!-- Submit button -->
         <input type="submit" value="Get Weather Forecast">
     </form>
 
+    <!-- Display weather data if available -->
     {% if weather_data %}
+        <!-- Weather Forecast for a specific city and country -->
         <h2>Weather Forecast for {{ weather_data.city.name }}, {{ weather_data.city.country }}</h2>
-        <ul>
-            {% for forecast in weather_data.list %}
-                <li>{{ forecast.dt_txt }}: {{ forecast.weather.0.description }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %} {# Added the missing {% endif %} here #}
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Description</th>
+                    <th>Temperature</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through the forecast data -->
+                {% for forecast in weather_data.list %}
+                    <tr>
+                        <td>{{ forecast.dt_txt }}</td>
+                        <td>{{ forecast.weather.0.description }}</td>
+                        <td>{{ forecast.main.temp }}°{{ unit }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 </body>
 </html>

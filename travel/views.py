@@ -4,13 +4,14 @@ Brief description of the file: determines what will be displayed when each of th
 Inputs: None
 Outputs: Displays the HTML page
 """
-from django.shortcuts import render
+from django.shortcuts import render, redirect 
 from .forms import RegionSelectionForm, TouristAttractionForm, GenerateScheduleForm, RecommendRestaurantsForm
 from .gpt_integration import display_regions, generate_text_with_gpt, recommend_tourist_attraction, generate_schedule
 from accounts.models import UserProfile 
 from django.contrib.auth.decorators import login_required
 from .weather import get_weather
 from .forms import WeatherForm
+from datetime import timedelta, datetime
 
 #make login required to update the user
 @login_required(login_url='login')
@@ -242,8 +243,6 @@ def feedback_view(request):
         return redirect('result')
 	
 
-# weatherapp/views.py
-
 def weather_forecast(request):
     weather_data = None
 
@@ -252,12 +251,12 @@ def weather_forecast(request):
 
         if form.is_valid():
             region = form.cleaned_data['region']
-            travel_duration = form.cleaned_data['travel_duration']
-            weather_data = get_weather(region, travel_duration)
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+            unit = form.cleaned_data['unit']
+            weather_data = get_weather(region, start_date, end_date, unit)
 
     else:
         form = WeatherForm()
 
     return render(request, 'travel/weather_forecast.html', {'form': form, 'weather_data': weather_data})
-
-

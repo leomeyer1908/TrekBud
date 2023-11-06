@@ -96,7 +96,14 @@ class RecommendRestaurantsForm(forms.Form):
         fields = ['region', 'cuisine_preferences', 'dietary_restrictions', 'price_range', 'min_rating', 'max_distance']
         
 
-#this is the formes for the weather selection
+
 class WeatherForm(forms.Form):
     region = forms.CharField(label='Region (City)', max_length=100)
-    travel_duration = forms.IntegerField(label='Travel Duration (hours)')
+    start_date = forms.DateField(label='Start Date', widget=forms.DateInput(attrs={'type': 'date'}))
+    end_date = forms.DateField(label='End Date', widget=forms.DateInput(attrs={'type': 'date'}))
+    unit = forms.ChoiceField(
+        label='Unit',
+        choices=[('imperial', 'Fahrenheit'), ('metric', 'Celsius')],
+        widget=forms.RadioSelect,
+        initial='imperial',
+    )
