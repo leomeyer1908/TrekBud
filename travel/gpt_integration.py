@@ -165,7 +165,7 @@ def recommend_restaurant(region, user_options):
 #generate text from a prompt using GPT
 def generate_text_with_gpt(input_text):
 	#openai api key
-	openai.api_key = "" 
+	openai.api_key = "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"
 	#Print that response is being generated to help debugging
 	print("Generating GPT response...")
 	#create a reponse from GPT
