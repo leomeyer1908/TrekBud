@@ -59,9 +59,9 @@ Criteria:
 
 	#add the desired format GPT should use
 	prompt += """Desired Format: 
-	Travel Region 1: <City, Country>, <Explanation/Copywriting>
-	Travel Region 2: <City, Country>, <Explanation/Copywriting>
-	Travel Region 3: <City, Country>, <Explanation/Copywriting>"""
+	Travel Region 1: <City, Country> - <Explanation/Copywriting>
+	Travel Region 2: <City, Country> - <Explanation/Copywriting>
+	Travel Region 3: <City, Country> - <Explanation/Copywriting>"""
 
 	#return the prompt
 	return prompt
@@ -165,7 +165,7 @@ def recommend_restaurant(region, user_options):
 #generate text from a prompt using GPT
 def generate_text_with_gpt(input_text):
 	#openai api key
-	openai.api_key = "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"
+	openai.api_key = "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"
 	#Print that response is being generated to help debugging
 	print("Generating GPT response...")
 	#create a reponse from GPT
