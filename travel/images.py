@@ -1,29 +1,33 @@
+"""
+Name of File: travel/images.py
+Brief description of the file: get image query to be searched, and then return the url of those images by using the Google Search API
+Inputs: image query
+Outputs: print image url
+"""
+
 from google_images_search import GoogleImagesSearch
 
-def search_images(query, num_images=3):
-    # Set up Google Images Search API
+def get_location_images(query, num_images=3):
+    # Set up Google Images Search API with the proper keys
     gis = GoogleImagesSearch('', '')
 
-    # Define the search query
+    # Define the search query paremeters
     _search_params = {
         'q': query,
         'num': num_images,
         'safe': 'high',
-        'fileType': 'jpg',  # You can change this based on your preference
+        'fileType': 'jpg',
     }
 
     # Search for images
     gis.search(search_params=_search_params)
 
-    # Download or print image URLs
+    # loop through each image from the results
     for image in gis.results():
+        #Right now we are only printing the image URL, but in the next sprint we will display it
         print("Image URL:", image.url)
-        # If you want to download the image, you can use a library like requests or urllib
-        # For example, using requests:
-        # response = requests.get(image.url)
-        # with open(f'{query}_image_{image.index}.jpg', 'wb') as f:
-        #     f.write(response.content)
 
+#the following is used for debugging purposes
 if __name__ == "__main__":
     location_query = input("Enter the location to search for: ")
-    search_images(location_query)
+    get_location_images(location_query)
