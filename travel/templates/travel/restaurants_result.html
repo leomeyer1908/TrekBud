@@ -41,14 +41,16 @@ Outputs: creates HTML for the result page
         {% for result in results %}
             <!--Display results-->
             <div>
-                <h1>{{ result.map_data.name }}</h1>
-                <p>{{ result.map_data.address }}</p>
+                <!--Display the name of the restaurant as was given to the map to show as a title-->
+                <h1 style="clear: both;">{{ result.map_data.name }}</h1>
+                <!--Display the description of the restaurant from GPT-->
+                <p style="clear: both;">{{ result.gpt_result }}</p>
+                <!--Display the address of the location-->
+                <p style="clear: both;">{{ result.map_data.address }}</p>
                 <!--Display map-->
-                <div id="map{{ forloop.counter }}" style="height: 400px;"></div>
+                <div id="map{{ forloop.counter }}" style="height: 400px; clear: both;"></div>
             </div>
-            <br>
-            <p>{{ result.gpt_result }}</p><br>
-            <!-- Feedback form -->
+            <br><br>
         {% endfor %}
     </div>
 </body>

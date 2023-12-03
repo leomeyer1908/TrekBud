@@ -1,0 +1,40 @@
+<!--
+Name of File: travel/templates/result.html
+Brief description of the file: display results for a form submission from a travel recommendation 
+Inputs: None
+Outputs: creates HTML for the result page
+-->
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Form Submission Result</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <!-- Adds a margin -->
+    <div style="margin:10px">
+        <!-- loop through each result -->
+        {% for result in results %}
+            <!--Display results-->
+            <div>
+                <!--Display region name-->
+                <h1 style="clear: both;">{{ result.region_name }}</h1>
+                <!--Display chatgpt description of region-->
+                <p style="clear: both;">{{ result.gpt_result }}</p>
+                
+                <!--loop through each image URL for this location-->
+                {% for image_url in result.image_urls %}
+                    <!--display one of the images for the current location-->
+                    <img src="{{ image_url }}" alt="Location image" style="width: auto; height: auto; max-width: 400px; max-height: 400px; margin-left: 10px">
+                {% endfor %}
+            </div>
+            <br><br>
+            <!-- Feedback form -->
+        {% endfor %}
+    </div>
+</body>
+</html>
+
