@@ -1,0 +1,64 @@
+<!--
+Name of File: travel/templates/result.html
+Brief description of the file: display results for a form submission from a travel recommendation 
+Inputs: None
+Outputs: creates HTML for the result page
+-->
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Form Submission Result</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMaps" async defer></script>
+    <script>
+        //fuinction to intialize maps
+        function initMaps() {
+            //loop thorugh each result
+            {% for result in results %}
+                //create a new map object for the current latitude and longitude, which it gets from result.map_Data
+                var map{{ forloop.counter }} = new google.maps.Map(document.getElementById('map{{ forloop.counter }}'), {
+                    center: { lat: {{ result.map_data.lat }}, lng: {{ result.map_data.lng }} },
+                    zoom: 12
+                });
+
+                // Add a marker for the location in the map for the current longitude and latitude
+                var marker{{ forloop.counter }} = new google.maps.Marker({
+                    position: { lat: {{ result.map_data.lat }}, lng: {{ result.map_data.lng }} },
+                    map: map{{ forloop.counter }},
+                    title: '{{ result.map_data.name }}'
+                });
+            {% endfor %}
+        }
+    </script>
+</head>
+<body>
+    <!-- Adds a margin -->
+    <div style="margin:10px">
+        <!-- loop through each result -->
+        {% for result in results %}
+            <!--Display results-->
+            <div>
+                <!--Display name of the attraction from the location in the map-->
+                <h1 style="clear: both;">{{ result.map_data.name }}</h1>
+                <!--Display gpt description of the attraction-->
+                <p style="clear: both;">{{ result.gpt_result }}</p>
+                <!--loop through each image URL for the current attraction-->
+                {% for image_url in result.image_urls %}
+                    <!--Display the current image -->
+                    <img src="{{ image_url }}" alt="Location image" style="width: auto; height: auto; max-width: 400px; max-height: 400px; margin-left: 10px">
+                {% endfor %}
+                <!--Display the address of the attraction -->
+                <p style="clear: both;">{{ result.map_data.address }}</p>
+                <!--Display map-->
+                <div id="map{{ forloop.counter }}" style="height: 400px; clear: both;"></div>
+            </div>
+            <br><br>
+            <!-- Feedback form -->
+        {% endfor %}
+    </div>
+</body>
+</html>
+

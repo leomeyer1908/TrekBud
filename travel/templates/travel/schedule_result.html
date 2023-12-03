@@ -1,0 +1,27 @@
+<!--
+Name of File: travel/templates/result.html
+Brief description of the file: display results for a form submission from a travel recommendation 
+Inputs: None
+Outputs: creates HTML for the result page
+-->
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Form Submission Result</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <!-- Adds a margin -->
+    <div style="margin:10px">
+        <!-- loop through each line of the gpt-result -->
+        {% for result in results %}
+            <!-- display line of gpt-result -->
+            <p>{{ result }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
+

@@ -6,14 +6,19 @@ Outputs: weather information for a region
 """
 # Import the 'requests' library to make HTTP requests
 import requests
+import json
 
 # Import the 'datetime' module to work with date and time data, and 'timedelta' for time intervals
 from datetime import datetime, timedelta
 
 # Define a function 'get_weather' that retrieves weather data for a specific region and date range
 def get_weather(region, start_date, end_date, unit):
+    #load up credentials file that has api keys
+    with open("credentials.json") as f:
+        #get credentials from json
+        credentials = json.load(f)
     # OpenWeatherMap API key
-    api_key = '21cd681675a5b34b9a8b33e7b847f14b'
+    api_key = credentials["openweathermap_api"]
     
     # Define the base URL for the OpenWeatherMap API
     base_url = 'https://api.openweathermap.org/data/2.5/forecast'
