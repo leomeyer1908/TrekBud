@@ -1,3 +1,4 @@
 django
 googlemaps
 google-api-python-client
+openai

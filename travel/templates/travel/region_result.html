@@ -30,6 +30,27 @@ Outputs: creates HTML for the result page
                     <!--display one of the images for the current location-->
                     <img src="{{ image_url }}" alt="Location image" style="width: auto; height: auto; max-width: 400px; max-height: 400px; margin-left: 10px">
                 {% endfor %}
+                <br>
+                <a style="margin-top: 5px; margin-bottom: 5px" href="/travel/recommend-attractions/?region={{ result.region_name }}" class="btn btn-primary" type="submit">Recommend Tourist Attractions for {{ result.region_name }}</a>
+                <a href="/travel/recommend-restaurants/?region={{ result.region_name }}" class="btn btn-primary" type="submit">Recommend Restaurants for {{ result.region_name }}</a>
+                <!-- Weather Forecast for a specific city and country -->
+                <h2>Weather Forecast for {{ result.region_name }}</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Description</th>
+                            <th>Temperature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ result.weather_data.dt_txt }}</td>
+                            <td>{{ result.weather_data.weather.0.description }}</td>
+                            <td>{{ result.weather_data.main.temp }}° F</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <br><br>
             <!-- Feedback form -->
