@@ -1,4 +1,6 @@
 django
 googlemaps
 google-api-python-client
+google_image_search
 openai
+requests

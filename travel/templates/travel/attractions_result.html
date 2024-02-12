@@ -54,6 +54,32 @@ Outputs: creates HTML for the result page
                 <p style="clear: both;">{{ result.map_data.address }}</p>
                 <!--Display map-->
                 <div id="map{{ forloop.counter }}" style="height: 400px; clear: both;"></div>
+
+                <!--Display Logisitcal information: -->
+                <h3 style="clear: both;">Logistical Information</h3>
+                <div style="clear: both; margin-bottom: 10px;">
+                    {% if result.info.rating != 'N/A' %}
+                    <p>Rating: {{ result.info.rating }}</p>
+                    {% endif %}
+                    {% if result.info.business_status != 'N/A' %}
+                    <p>Business Status: {{ result.info.business_status }}</p>
+                    {% endif %}
+                    {% if result.info.website != 'N/A' %}
+                    <p>Website: <a href="{{ result.info.website }}" target="_blank">{{ result.info.website }}</a></p>
+                    {% endif %}
+                    {% if result.info.open_now != 'N/A' %}
+                    <p>Open Status: {% if result.info.open_now %}Yes{% else %}No{% endif %}</p>
+                    {% endif %}
+                    {% if result.info.opening_hours != 'N/A' %}
+                    <p>Opening Hours:</p>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        {% for day in result.info.opening_hours %}
+                        <li>{{ day }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <a style="margin-top: 5px; margin-bottom: 5px" href="/travel/generate-schedule/?region={{ result.region_name }}&attraction={{ result.attraction_name}}" class="btn btn-primary" type="submit">Generate Schedule for {{ result.attraction_name }}</a>
             </div>
             <br><br>
             <!-- Feedback form -->

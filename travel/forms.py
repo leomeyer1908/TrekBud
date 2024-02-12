@@ -60,7 +60,7 @@ class TouristAttractionForm(forms.Form):
 #create the forms for the generate schedule page page
 class GenerateScheduleForm(forms.Form):
 	#list of all the options
-	option_list = ["date", "time", "duration"]
+	option_list = ["region", "attractions", "date", "time", "duration"]
 
 	# Create a form field for each of the personalized user settings
 	region = forms.CharField(max_length=100, required=True, help_text="100 characters or fewer", label="Enter region you would like to travel to")

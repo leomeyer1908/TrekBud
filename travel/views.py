@@ -14,6 +14,7 @@ from .forms import WeatherForm
 from datetime import timedelta, datetime
 from .map import search_location
 from .images import get_location_images
+from .places import get_place_details
 import re
 import json
 
@@ -181,6 +182,8 @@ def recommend_attractions(request):
 					name, address, lat, lng = search_location(google_maps_api_key, attraction_name)
 					#get image urls from 3 location from that attraction
 					image_urls = get_location_images(name, 3)
+					#Get logisitical information from atraction
+					attraction_info = get_place_details(attraction_name, 'tourist_attraction', user_input['region'], google_maps_api_key)
 					#Add the current GPT result, name, address, latitude, and logitude to the results to display it
 					results.append({
 						"gpt_result": result,
@@ -190,7 +193,10 @@ def recommend_attractions(request):
 							'lat': lat,
 							'lng': lng,
 						},
-						"image_urls": image_urls
+						"image_urls": image_urls,
+						"region_name": user_input["region"],
+						"attraction_name": attraction_name,
+						"info": attraction_info
 					})
 				#if the GPT output was not able to be parsed
 				else:
@@ -267,8 +273,12 @@ def make_schedule(request):
 			return render(request, 'travel/schedule_result.html', {'results': results}) 
 	#if the user has not submit the form
 	else:
+		#get initial region from the link
+		initial_region = request.GET.get('region', '')
+		#get initial attraction from the link
+		initial_attractions = request.GET.get('attractions', '')
 		#load the forms page for generating a schedule
-		form = GenerateScheduleForm()
+		form = GenerateScheduleForm(initial={"region": initial_region, "attractions": initial_attractions})
 
 	#send to the user the generate_schedule.html to be display on the browser, along with the proper forms for it
 	return render(request, 'travel/generate_schedule.html', {'form': form})
@@ -345,6 +355,8 @@ def recommend_restaurants(request):
 					restaurant_name = parsed_result.group(1)
 					#get the name, address, latitude, and logintude from the google maps API of the restaurant
 					name, address, lat, lng = search_location(google_maps_api_key, restaurant_name)
+					#Get logisitical infomration about restaurant
+					restaurant_info = get_place_details(restaurant_name, 'restaurant', user_input['region'], google_maps_api_key)
 					#Add the current GPT result, name, address, latitude, and logitude to the results to display it
 					results.append({
 						"gpt_result": result,
@@ -354,6 +366,7 @@ def recommend_restaurants(request):
 							'lat': lat,
 							'lng': lng,
 						},
+						'info': restaurant_info
 					})
 				#if the GPT output was not able to be parsed
 				else:
