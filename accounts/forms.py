@@ -80,7 +80,7 @@ class RegistrationForm(UserCreationForm):
 	class Meta:
 		model = UserProfile
 		#list the fields that will be displayed and the order in which they will appear
-		fields = ['username', 'name', 'email', 'phone_number', 'address', 'password1', 'password2',
+		fields = ['user', 'name', 'email', 'phone_number', 'address', 'password1', 'password2',
 				  'dietary_restrictions', 'emergency_contact', 'travel_style_preferences',
 				  'preferred_airlines', 'budget_constraints', 'preferred_travel_dates', 'trip_duration',
 				  'notification_preferences', 'profile_picture', 'profile_privacy']
