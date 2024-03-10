@@ -4,44 +4,45 @@ Brief description of the file: html template page for the select region page
 Inputs: None
 Outputs: creates HTML for the select region page
 -->
+
 {%load static%}
+{% include 'header.html' %}
+
+
 <!DOCTYPE html>
-<html>
 <head>
     <title>Select Travel Region</title>
 	<link rel="stylesheet" href="{% static 'style.css' %}">
 	<!-- Include Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
-	<div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-				<h2>Select Your Desired Travel Region</h2>
-				<form method="post">
-							{% csrf_token %}
-							<!--Loops thorugh each form field-->
-							{% for field in form %}
-								<div class="form-group">
-									<!--display field name-->
-									{{ field.label_tag }}
-									<!--display field name-->
-									{{ field }}
-									<!--display field description if it exists-->
-									{% if field.help_text %}
-										<small class="form-text text-muted">{{ field.help_text }}</small>
-									{% endif %}
-									<!-- Display field errors using Bootstrap styles -->
-									{% for error in field.errors %}
-										<div class="invalid-feedback">{{ error }}</div>
-									{% endfor %}
-								</div>
-							{% endfor %}
-					<button class="btn btn-primary" type="submit">Submit</button>
-				</form>
-			</div>
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<h2>Select Your Desired Travel Region</h2>
+			<form method="post">
+						{% csrf_token %}
+						<!--Loops thorugh each form field-->
+						{% for field in form %}
+							<div class="form-group">
+								<!--display field name-->
+								{{ field.label_tag }}
+								<!--display field name-->
+								{{ field }}
+								<!--display field description if it exists-->
+								{% if field.help_text %}
+									<small class="form-text text-muted">{{ field.help_text }}</small>
+								{% endif %}
+								<!-- Display field errors using Bootstrap styles -->
+								{% for error in field.errors %}
+									<div class="invalid-feedback">{{ error }}</div>
+								{% endfor %}
+							</div>
+						{% endfor %}
+				<button class="btn btn-primary" type="submit">Submit</button>
+			</form>
 		</div>
 	</div>
-</body>
-</html>
+</div>
 
+{% include 'footer.html' %}

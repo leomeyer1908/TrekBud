@@ -5,6 +5,8 @@ Inputs: None
 Outputs: creates HTML for the generate schedule page
 -->
 {%load static%}
+{% include 'header.html' %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,5 +47,4 @@ Outputs: creates HTML for the generate schedule page
 </body>
 </html>
 
-
-
+{% include 'footer.html' %}

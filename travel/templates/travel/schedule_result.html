@@ -4,7 +4,11 @@ Brief description of the file: display results for a form submission from a trav
 Inputs: None
 Outputs: creates HTML for the result page
 -->
+
 {%load static%}
+{% include 'header.html' %}
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,3 +29,5 @@ Outputs: creates HTML for the result page
 </body>
 </html>
 
+
+{% include 'footer.html' %}

@@ -1,0 +1,33 @@
+header {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #145FAF, #532982);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+header {
+    padding-left: 1rem;
+    align-items:center;
+}
+
+.nav-link {
+    color: #ffffff;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffc107;
+}
+
+.btn-outline-primary, .btn-primary {
+    margin-left: 10px;
+}
+
+header {
+    visibility: visible;
+    opacity: 1;
+}

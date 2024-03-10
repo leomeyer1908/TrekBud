@@ -1,9 +1,7 @@
 /* Apply a gradient background to the entire page */
 body {
-    display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 /* Style the container */
@@ -38,7 +36,8 @@ input[type="password"] {
 }
 /* Style the submit button with a gradient */
 .btn-primary {
-    height: 100%;
+    margin: 0 auto;
+    text-align: center;
     width: 100%;
     border-radius: 20px;
     border: none;

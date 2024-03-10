@@ -13,6 +13,7 @@ urlpatterns = [
     path('', include('home.urls')), #home url
     path('accounts/', include('accounts.urls')), #get the accounts url from accounts/accounts.urls
     path('travel/', include('travel.urls')), # get the travel url from travel/travel.urls
+    path('infopages/', include('infopages.urls')), # get the info pages url from infopages/infopages.urls
     # Add other app URLs here
 ]
 

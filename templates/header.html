@@ -1,0 +1,34 @@
+{% load static %}
+
+<!-- <link rel="preload" href="{% static 'style2.css' %}"> -->
+<!--Create home header-->
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0">
+    <style>header{visibiliy: hidden;opacity:0;}</style>
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- ADD LATER FOR LOGO
+    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+    </a>
+    -->
+    <!-- middle items -->
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="/home" class="nav-link px-2 link-secondary">Home</a></li> <!--show home button-->
+        <li><a href="/travel/select-region" class="nav-link px-2 link-dark">Select Region</a></li> <!--show select region button-->
+        <li><a href="/travel/recommend-attractions" class="nav-link px-2 link-dark">Recommend Attraction</a></li> <!--show recommend attractions button-->
+        <li><a href="/travel/generate-schedule" class="nav-link px-2 link-dark">Generate Schedule</a></li> <!--show generate schedule button-->
+        <li><a href="/travel/recommend-restaurants" class="nav-link px-2 link-dark">Recommend Restaurants</a></li> <!--show recommend restaurants button-->
+        <!--show weather forecast button-->
+        <!-- <li><a href="/travel/weather-forecast" class="nav-link px-2 link-dark">weather-forecast</a></li> -->
+    </ul>
+    <!-- right items -->
+    <div class="col-md-3 text-end">
+        {% if request.user.is_authenticated%} <!--If the user is logged in-->
+        <a type="button" class="btn btn-outline-success me-2" href="{%url 'logout'%}">Logout</a> <!--Show logout button, which leads to logout url-->
+        <a type="button" class="btn btn-success" href="/accounts/user-profile">View User Profile</a> <!--show generate schedule button-->
+        {%else%} <!--if use is not logged in-->
+        <a type="button" class="btn btn-outline-success me-2" href="/accounts/login">Login</a> <!--show login button-->
+        <a type="button" class="btn btn-success" href="/accounts/register">Register</a> <!--show register button-->
+        {%endif%}
+    </div>
+</header>

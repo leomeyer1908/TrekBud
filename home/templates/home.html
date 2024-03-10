@@ -5,6 +5,7 @@ Inputs: None
 Outputs: display all other pages in the website
 -->
 {% load static %}
+{% include 'header.html' %}
 
 <html>
     <head>
@@ -46,48 +47,18 @@ Outputs: display all other pages in the website
         </style>
     </head>
     <body>
-        <!--Create home header-->
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 border-bottom">
-            <!-- ADD LATER FOR LOGO
-            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-            </a>
-            -->
-            <!-- middle items -->
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/home" class="nav-link px-2 link-secondary">Home</a></li> <!--show home button-->
-                <li><a href="/travel/select-region" class="nav-link px-2 link-dark">Select Region</a></li> <!--show select region button-->
-                <li><a href="/travel/recommend-attractions" class="nav-link px-2 link-dark">Recommend Attraction</a></li> <!--show recommend attractions button-->
-                <li><a href="/travel/generate-schedule" class="nav-link px-2 link-dark">Generate Schedule</a></li> <!--show generate schedule button-->
-                <li><a href="/travel/recommend-restaurants" class="nav-link px-2 link-dark">Recommend Restaurants</a></li> <!--show recommend restaurants button-->
-                <li><a href="/travel/weather-forecast" class="nav-link px-2 link-dark">weather-forecast</a></li> <!--show weather forecast button-->
-            </ul>
-            <!-- right items -->
-            <div class="col-md-3 text-end">
-                {% if request.user.is_authenticated%} <!--If the user is logged in-->
-                <a type="button" class="btn btn-outline-primary me-2" href="{%url 'logout'%}">Logout</a> <!--Show logout button, which leads to logout url-->
-                <a type="button" class="btn btn-primary" href="/accounts/user-profile">View User Profile</a> <!--show generate schedule button-->
-                {%else%} <!--if use is not logged in-->
-                <a type="button" class="btn btn-outline-primary me-2" href="/accounts/login">Login</a> <!--show login button-->
-                <a type="button" class="btn btn-primary" href="/accounts/register">Register</a> <!--show register button-->
-                {%endif%}
-            </div>
-        </header>
-
-
-
         <div class="container" style="max-width:100%; padding:0px">
             <!-- Carousel 1: Popular Locations -->
             <div id="popularLocationsCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{% static 'images/popular_locations/image1.jpeg' %}" alt="Image 1">
+                        <img src="{% static 'images/popular_locations/image1.png' %}" alt="Image 1">
                     </div>
                     <div class="carousel-item">
-                        <img src="{% static 'images/popular_locations/image2.jpeg' %}" alt="Image 2">
+                        <img src="{% static 'images/popular_locations/image2.png' %}" alt="Image 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="{% static 'images/popular_locations/image3.jpeg' %}" alt="Image 3">
+                        <img src="{% static 'images/popular_locations/image3.png' %}" alt="Image 3">
                     </div>
                 </div>
                 <!-- Add carousel controls -->
@@ -230,14 +201,12 @@ Outputs: display all other pages in the website
                 </a>
             </div>
         </div>
-        <footer class="footer mt-4 py-3 bg-light">
-            <div class="container text-center">
-                <span class="text-muted">Your footer content here</span>
-            </div>
-        </footer>
+        
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
 </html>
+
+{% include 'footer.html' %}
