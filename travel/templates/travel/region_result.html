@@ -39,6 +39,8 @@ Outputs: creates HTML for the result page
                 <a style="margin-top: 5px; margin-bottom: 5px" href="/travel/recommend-restaurants/?region={{ result.region_name }}" class="btn btn-primary" type="submit">Recommend Restaurants for {{ result.region_name }}</a>
                 <!-- Button for the recommend travels with the kayak url-->
                 <a style="margin-top: 5px; margin-bottom: 5px" href="{{ result.kayak_url }}" class="btn btn-primary" type="submit">Look For Flights To {{ result.region_name }}</a>
+                <!-- Button for the recommend hotels with the hotels url-->
+                <a style="margin-top: 5px; margin-bottom: 5px" href="{{ result.hotel_url }}" class="btn btn-primary" type="submit">Look For Hotels in {{ result.region_name }}</a>
                 <!-- Weather Forecast for a specific city and country -->
                 {% if result.weather_data %}
                 <h2>Weather Forecast for {{ result.region_name }}</h2>

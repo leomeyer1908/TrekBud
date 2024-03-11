@@ -53,6 +53,10 @@ Outputs: creates HTML for the result page
                 <!--Display map-->
                 <div id="map{{ forloop.counter }}" style="height: 400px; clear: both;"></div>
 
+                <!--Button to link to a website to make reservations-->
+                {% if result.info.website != 'N/A' %}
+                <a style="margin-top: 5px; margin-bottom: 5px" href="{{ result.info.website }}" class="btn btn-primary" type="submit">Make a reservation for {{ result.map_data.name }}</a>
+                {% endif %}
                 <!--Display Logisitcal information: -->
                 <h3 style="clear: both;">Logistical Information</h3>
                 <div style="clear: both; margin-bottom: 10px;">
@@ -61,9 +65,6 @@ Outputs: creates HTML for the result page
                     {% endif %}
                     {% if result.info.business_status != 'N/A' %}
                     <p>Business Status: {{ result.info.business_status }}</p>
-                    {% endif %}
-                    {% if result.info.website != 'N/A' %}
-                    <p>Website: <a href="{{ result.info.website }}" target="_blank">{{ result.info.website }}</a></p>
                     {% endif %}
                     {% if result.info.open_now != 'N/A' %}
                     <p>Open Status: {% if result.info.open_now %}Yes{% else %}No{% endif %}</p>

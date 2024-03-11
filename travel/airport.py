@@ -1,3 +1,10 @@
+"""
+Name of File: travel/airport.py
+Brief description of the file: has function that creates a kayak.com url based on the location given by the user 
+Inputs: Takes a region
+Outputs: returns a url
+"""
+
 import requests
 from .map import search_location
 from datetime import datetime, timedelta
