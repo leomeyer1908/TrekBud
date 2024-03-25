@@ -1,6 +1,6 @@
 django
 googlemaps
 google-api-python-client
-google_image_search
-openai
+Google-Images-Search
+openai==0.28
 requests

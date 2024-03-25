@@ -118,15 +118,23 @@ def generate_schedule(region, attractions, user_options):
 
     #add the desired format GPT should use
     prompt += """Desired Format:
-    Trip Schedule 1: <Attraction Name> - <Explanation/Copywriting>
+    Trip Schedule: <Attraction Name> - <Explanation/Copywriting>
         Day 1: 
         - 6AM-7AM: <what will be done during this time> 
         - 8AM-10AM: <what will be done during this time> 
         ... <Include a detailed schedule like the one for Day 1 for all the days of the trip>
         Day <Day Num>:
-        - <time>: <what will be done during this time> 
+        - <time>: <what will be done during this time>
     
     Make sure to put all the days in between the first day and the last where it says "..." in the desired format, and do not skip any days.
+
+    Also include in backets next to releavant points the name of images that can be included. Only include this when appropriate.
+    For example:
+    ...
+    - 9:30AM-11AM: <what will be done during this time> [image: Name of picture for the location/attraction related to what will be done].
+    ...
+
+    Only provide the information that will fit into the above format.
     """
 
     #return the prompt

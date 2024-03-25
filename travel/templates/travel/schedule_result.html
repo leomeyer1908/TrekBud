@@ -18,6 +18,52 @@ Outputs: creates HTML for the result page
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
+    <div class="container">
+        <!-- Trip Schedule -->
+        <div class="row">
+            <div class="col">
+                <h2>{{ title }}</h2>
+                <hr>
+                {% for day_info in schedule %}
+                    <h3>Day {{ loop.index }}:</h3>
+                    <ul class="list-group">
+                        {% for activity in day_info.activities %}
+                            <li class="list-group-item">{{ activity.time_range }}: {{ activity.description }} {% if activity.image_urls %}
+                                {% for url in activity.image_urls %}
+                                    <img src="{{ url }}">
+                                {% endfor %} {% endif %}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+      
+  
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
     <!-- Adds a margin -->
     <div style="margin:10px">
         <!-- loop through each line of the gpt-result -->
