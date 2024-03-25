@@ -13,27 +13,57 @@ Outputs: creates HTML for the faqs page
 <head>
     <meta charset="UTF-8">
     <title>FAQs - Travel Recommendation App</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        main {
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff; /* Blue color for headings */
+        }
+        p, li {
+            font-size: 18px; /* Increased font size for paragraphs and list items */
+            line-height: 1.6; /* Improved readability with increased line height */
+        }
+        ul {
+            list-style-type: none; /* Remove default list styling */
+            padding-left: 0; /* Remove default padding */
+        }
+        li {
+            margin-bottom: 10px; /* Add margin between list items */
+        }
+    </style>
 </head>
 <body class="d-flex flex-column vh-100">
-    <main class=" flex-grow-1">
-        <h1>Frequently Asked Questions</h1>
-        <h2>General</h2>
-        <ul>
-            <li><strong>How does the Travel Recommendation App work?</strong> - Our app uses the GPT Model to analyze your preferences and provide personalized travel recommendations.</li>
-            <li><strong>Is the app free to use?</strong> - Yes, our app is free to use for all users.</li>
-        </ul>
-        <h2>Account</h2>
-        <ul>
-            <li><strong>How do I create an account?</strong> - To create an account, simply click on the "Register" button and follow the instructions.</li>
-            <li><strong>Can I change my account settings?</strong> - Yes, you can manage your account settings and preferences from the dashboard.</li>
-        </ul>
-        <h2>Recommendations</h2>
-        <ul>
-            <li><strong>How accurate are the recommendations?</strong> - Our recommendations use the latest LLM models and user feedback to provide accurate and relevant suggestions.</li>
-            <li><strong>Can I customize my recommendations?</strong> - Yes, you can customize your preferences to receive tailored recommendations.</li>
-        </ul>
+    <main class="flex-grow-1">
+        <div class="container">
+            <h1 class="mt-5">Frequently Asked Questions</h1>
+            <h2>General</h2>
+            <ul>
+                <li><strong>How does the Travel Recommendation App work?</strong> - Our app uses the GPT Model to analyze your preferences and provide personalized travel recommendations.</li>
+                <li><strong>Is the app free to use?</strong> - Yes, our app is free to use for all users.</li>
+            </ul>
+            <h2>Account</h2>
+            <ul>
+                <li><strong>How do I create an account?</strong> - To create an account, simply click on the "Register" button and follow the instructions.</li>
+                <li><strong>Can I change my account settings?</strong> - Yes, you can manage your account settings and preferences from the dashboard.</li>
+            </ul>
+            <h2>Recommendations</h2>
+            <ul>
+                <li><strong>How accurate are the recommendations?</strong> - Our recommendations use the latest LLM models and user feedback to provide accurate and relevant suggestions.</li>
+                <li><strong>Can I customize my recommendations?</strong> - Yes, you can customize your preferences to receive tailored recommendations.</li>
+            </ul>
+        </div>
     </main>
+    <!-- Link Bootstrap JS (Optional, for certain Bootstrap components) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 {% include 'footer.html' %}

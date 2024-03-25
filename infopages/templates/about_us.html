@@ -12,16 +12,40 @@ Outputs: creates HTML for the about us page
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About Us - Travel Recommendation App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        main {
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff; /* Blue color for heading */
+        }
+        p {
+            font-size: 18px; /* Increased font size for paragraphs */
+            line-height: 1.6; /* Improved readability with increased line height */
+        }
+    </style>
 </head>
 <body class="d-flex flex-column vh-100">
-    <main class=" flex-grow-1">
-        <h1>About Us</h1>
-        <p>Welcome to, TrekBud, our Travel Recommendation App! We are passionate about helping travelers discover new destinations, attractions, restaurants, and create memorable experiences.</p>
-        <p>Our app utilizes advanced AI technology to curate personalized travel recommendations based on your preferences and interests.</p>
-        <p>Explore our platform to find exciting destinations, plan your itinerary, and make the most out of your travels!</p>
+    <main class="flex-grow-1">
+        <div class="container">
+            <h1 class="mt-5">About Us</h1>
+            <p>Welcome to TrekBud, our Travel Recommendation App! We are passionate about helping travelers discover new destinations, attractions, restaurants, and create memorable experiences.</p>
+            <p>Our app utilizes advanced AI technology to curate personalized travel recommendations based on your preferences and interests.</p>
+            <p>Explore our platform to find exciting destinations, plan your itinerary, and make the most out of your travels!</p>
+        </div>
     </main>
+    <!-- Link Bootstrap JS (Optional, for certain Bootstrap components) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 {% include 'footer.html' %}

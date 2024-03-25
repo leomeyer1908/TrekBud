@@ -12,19 +12,50 @@ Outputs: creates HTML for the contact us page
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us - Travel Recommendation App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        main {
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff; /* Blue color for heading */
+        }
+        p {
+            font-size: 18px; /* Increased font size for paragraphs */
+            line-height: 1.6; /* Improved readability with increased line height */
+        }
+        ul {
+            list-style-type: none; /* Remove default list styling */
+            padding-left: 0; /* Remove default padding */
+        }
+        li {
+            margin-bottom: 10px; /* Add margin between list items */
+        }
+    </style>
 </head>
 <body class="d-flex flex-column vh-100">
-    <main class=" flex-grow-1">
-        <h1>Contact Us</h1>
-        <p>If you have any questions, suggestions, or feedback regarding our Travel Recommendation App, please feel free to contact us:</p>
-        <ul>
-            <li>Email: info@travelrecommendationapp.com</li>
-            <li>Phone: +1 (123) 456-7890</li>
-            <li>Address: 123 Main Street, City, Country</li>
-        </ul>
+    <main class="flex-grow-1">
+        <div class="container">
+            <h1 class="mt-5">Contact Us</h1>
+            <p>If you have any questions, suggestions, or feedback regarding our Travel Recommendation App, please feel free to contact us:</p>
+            <ul>
+                <li>Email: info@travelrecommendationapp.com</li>
+                <li>Phone: +1 (123) 456-7890</li>
+                <li>Address: 123 Main Street, City, Country</li>
+            </ul>
+        </div>
     </main>
+    <!-- Link Bootstrap JS (Optional, for certain Bootstrap components) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 {% include 'footer.html' %}

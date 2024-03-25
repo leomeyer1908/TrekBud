@@ -5,20 +5,56 @@ Inputs: Button to confirm account deleteion
 Outputs: Deletes user account
 -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- title of page -->
-    <title>User Profile Account</title>
+    <!-- Title of the page -->
+    <title>Delete User Account</title>
+    <style>
+        /* Add custom styles here */
+        body {
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .delete-heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .delete-message {
+            margin-bottom: 20px;
+        }
+        .btn-container {
+            text-align: center;
+        }
+        .btn-delete {
+            margin-right: 10px;
+        }
+        .btn-cancel {
+            color: #fff;
+            background-color: #007bff; /* Blue background color */
+            border-color: #007bff; /* Matching border color */
+        }
+    </style>
 </head>
 <body>
-    <h2>Delete Your Account</h2>
-    <p>Are you sure you want to delete your account? This action cannot be undone.</p>
-    <form method="post">
-      {% csrf_token %}
-      <button type="submit">Delete Account</button>
-    </form>
-    <a href="{% url 'edit_profile' %}">Cancel</a>
+    <div class="container">
+        <h2 class="delete-heading">Delete Your Account</h2>
+        <p class="delete-message">Are you sure you want to delete your account? This action cannot be undone.</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="btn-container">
+                <button type="submit" class="btn btn-danger btn-delete">Delete Account</button>
+                <!-- Button to cancel account deletion -->
+                <a href="{% url 'edit_profile' %}" class="btn btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
 </body>
-</htmls>
+</html>
+

@@ -25,13 +25,19 @@ Outputs: creates HTML for the result page
                 <h2>{{ title }}</h2>
                 <hr>
                 {% for day_info in schedule %}
-                    <h3>Day {{ loop.index }}:</h3>
+                    <h3>Day {{ forloop.counter }}:</h3>
                     <ul class="list-group">
                         {% for activity in day_info.activities %}
-                            <li class="list-group-item">{{ activity.time_range }}: {{ activity.description }} {% if activity.image_urls %}
-                                {% for url in activity.image_urls %}
-                                    <img src="{{ url }}">
-                                {% endfor %} {% endif %}</li>
+                            <li class="list-group-item">
+                                {{ activity.time_range }}: {{ activity.description }} 
+                                {% if activity.image_urls %}
+                                    <div style="white-space: nowrap; max-width: 100%; overflow-x: auto;">
+                                    {% for url in activity.image_urls %}
+                                        <img src="{{ url }}" alt="Location image" style="width: auto; height: auto; max-width: 400px; max-height: 400px; margin-left: 10px">
+                                    {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </li>
                         {% endfor %}
                     </ul>
                 {% endfor %}

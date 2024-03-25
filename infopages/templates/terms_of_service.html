@@ -13,19 +13,49 @@ Outputs: creates HTML for the terms of service page
 <head>
     <meta charset="UTF-8">
     <title>Terms of Service - Travel Recommendation App</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        main {
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff; /* Blue color for heading */
+        }
+        p, li {
+            font-size: 18px; /* Increased font size for paragraphs and list items */
+            line-height: 1.6; /* Improved readability with increased line height */
+        }
+        ul {
+            list-style-type: none; /* Remove default list styling */
+            padding-left: 0; /* Remove default padding */
+        }
+        li {
+            margin-bottom: 10px; /* Add margin between list items */
+        }
+    </style>
 </head>
 <body class="d-flex flex-column vh-100">
-    <main class=" flex-grow-1">
-        <h1>Terms of Service</h1>
-        <p>By using TrekBud, you agree to comply with the following terms and conditions:</p>
-        <ul>
-            <li>Usage of the app is subject to your acceptance of our privacy policy.</li>
-            <li>You agree not to misuse the app or engage in any unlawful activities.</li>
-            <li>We reserve the right to modify or terminate the app at any time without prior notice.</li>
-            <li>We are not responsible for any damages or losses incurred during the use of the app.</li>
-        </ul>
+    <main class="flex-grow-1">
+        <div class="container">
+            <h1 class="mt-5">Terms of Service</h1>
+            <p>By using TrekBud, you agree to comply with the following terms and conditions:</p>
+            <ul>
+                <li>Usage of the app is subject to your acceptance of our privacy policy.</li>
+                <li>You agree not to misuse the app or engage in any unlawful activities.</li>
+                <li>We reserve the right to modify or terminate the app at any time without prior notice.</li>
+                <li>We are not responsible for any damages or losses incurred during the use of the app.</li>
+            </ul>
+        </div>
     </main>
+    <!-- Link Bootstrap JS (Optional, for certain Bootstrap components) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 {% include 'footer.html' %}

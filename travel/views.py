@@ -288,54 +288,51 @@ def make_schedule(request):
 			#get a prompt based on the user input, and use that prompt to give it to the GPT model to get a result
 			result = generate_text_with_gpt(generate_schedule(user_input["region"], attractions, options))
 
-			#load up credentials file that has api keys
-			with open("credentials.json") as f:
-				#get credentials from json
-				credentials = json.load(f)
-
-			#google maps api key
-			google_maps_api_key = credentials["google_maps_api"]
-
-
+			#get title and schedule text
 			title, schedule_text = result.split("Trip Schedule:", 1)[1].split("Day 1:", 1)
+			#remove whitespace around title
 			title = title.strip()
+			#remove whitespace around schedule text
 			schedule_text = schedule_text.strip()
+			#get each day
 			days = schedule_text.split("Day ")
 			# Define regular expressions for matching day headers and activities
 			day_pattern = re.compile(r"Day (\d+):\n")
-			activity_pattern = re.compile(r"(\d{1,2}(?:AM|PM)-\d{1,2}(?:AM|PM)):(.*?)\s?(?:\[image: (.*?)\])?\n?", re.DOTALL)
+			activity_pattern = re.compile(r"(\d{1,2}(?:AM|PM)-\d{1,2}(?:AM|PM)): ([^\n]*)", re.DOTALL)
 
+			#make a list for the schedule
 			schedule = []
+			#get each of the days that will be part of the schedule based on the pattern
 			days = day_pattern.split(schedule_text)[1:]
 
 			# Iterate over matched day headers and activities
 			for i in range(0, len(days), 2):
+				#get the current day and put it on the day ingo
 				day_info = {"day": days[i]}
+				#use the regular expression to match the activity
 				activities = activity_pattern.findall(days[i+1])
-				day_info["activities"] = [{"time_range": activity[0], "description": activity[1].strip(), "image_tag": activity[2]} for activity in activities]
+				#initialize the activities to an empty list
+				day_info["activities"] = []
+				#loop through each activity
+				for activity in activities:
+					#parse the time range
+					time_range = activity[0]
+					#parse the description
+					description = activity[1]
+					#initialize the image urls to none
+					image_urls = None
+					#if there is an image tag
+					if "[image:" in activity[1]: 
+						#get the part that belongs to description, and the one that is part of the image tag
+						description, image_tag = description.split("[image:")
+						#get only the image name from the image tag
+						image_tag = image_tag.split("]")[0].strip()	
+						#get image urls from 3 location from the image tag
+						image_urls = get_location_images(image_tag, 3)
+					#add all the activities information to day info
+					day_info['activities'].append({"time_range": time_range, "description": description.strip(), "image_urls": image_urls})	
+				#add the current day info to schedule
 				schedule.append(day_info)
-			# # Split text at "Trip Schedule 1: " to get title and schedule
-			# schedule = []
-			# for day in days[1:]:
-			# 	day_info = {"day": day.split(":")[0]}
-			# 	activities = day.split(":")[1]
-			# 	activities[0] = activities[0].replace("\n", "")
-			# 	day_info["activities"] = []
-			# 	for activity in activities:
-			# 		if activity:
-			# 			parts = activity.split("->")
-			# 			time_range = parts[0]
-			# 			description = parts[1]
-			# 			image_urls = None
-			# 			if "[image: " in description:
-			# 				image_tag = description.split("[image: ")[1].split("]")[0]
-			# 				name = search_location(google_maps_api_key, image_tag)
-			# 				#get image urls from 3 location from that attraction
-			# 				image_urls = get_location_images(name, 3)
-			# 				description = description.split("[image: ")[0]
-			# 			day_info["activities"].append({"time_range": time_range, "description": description, "image_urls": image_urls})
-			# 	schedule.append(day_info)
-
 
 			#get each line of the result as a separate line to format it better
 			#results = result.split("\n")

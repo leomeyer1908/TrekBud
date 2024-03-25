@@ -8,31 +8,55 @@ Outputs: display user information
 {% include 'header.html' %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- title of page -->
+    <!-- Title of the page -->
     <title>User Profile Account</title>
+    <style>
+        /* Add custom styles here */
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .profile-container {
+            margin: 10px;
+        }
+        .profile-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .profile-item {
+            margin-bottom: 10px;
+        }
+        .edit-profile-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div style="margin:10px">
+    <div class="profile-container">
         <!-- Page and all the profile information for the current user profile -->
         <h1>User Profile Account</h1>
-        <b>Name: </b>{{ userProfile.name }}<br>
-        <b>Email: </b>{{ userProfile.email }}<br>
-        <b>Phone Number: </b>{{ userProfile.phone_number }}<br>
-        <b>Address: </b>{{ userProfile.address }}<br>
-        <b>Dietary Restrictions: </b>{{ userProfile.dietary_restrictions }}<br>
-        <b>Emergency Contact: </b>{{ userProfile.emergency_contact }}<br>
-        <b>Travel Style Preferences: </b>{{ userProfile.travel_style_preferences }}<br>
-        <b>Preferred Airlines: </b>{{ userProfile.preferred_airlines }}<br>
-        <b>Budget Constraints: </b>{{ userProfile.budget_constraints }}<br>
-        <b>Preferred Travel Dates: </b>{{ userProfile.preferred_travel_dates }}<br>
-        <b>Trip Duration: </b>{{ userProfile.trip_duration }}<br>
-        <b>Notification Preferences: </b>{{ userProfile.notification_preferences }}<br>
+        <div class="profile-item"><b>Name: </b>{{ userProfile.name }}</div>
+        <div class="profile-item"><b>Email: </b>{{ userProfile.email }}</div>
+        <div class="profile-item"><b>Phone Number: </b>{{ userProfile.phone_number }}</div>
+        <div class="profile-item"><b>Address: </b>{{ userProfile.address }}</div>
+        <div class="profile-item"><b>Dietary Restrictions: </b>{{ userProfile.dietary_restrictions }}</div>
+        <div class="profile-item"><b>Emergency Contact: </b>{{ userProfile.emergency_contact }}</div>
+        <div class="profile-item"><b>Travel Style Preferences: </b>{{ userProfile.travel_style_preferences }}</div>
+        <div class="profile-item"><b>Preferred Airlines: </b>{{ userProfile.preferred_airlines }}</div>
+        <div class="profile-item"><b>Budget Constraints: </b>{{ userProfile.budget_constraints }}</div>
+        <div class="profile-item"><b>Preferred Travel Dates: </b>{{ userProfile.preferred_travel_dates }}</div>
+        <div class="profile-item"><b>Trip Duration: </b>{{ userProfile.trip_duration }}</div>
+        <div class="profile-item"><b>Notification Preferences: </b>{{ userProfile.notification_preferences }}</div>
     </div>
     <!-- Add a button to edit the profile -->
-    <a href="{% url 'edit_profile' %}">Edit Profile</a> 
+    <a href="{% url 'edit_profile' %}" class="edit-profile-link btn btn-primary">Edit Profile</a> 
 </body>
 </html>
